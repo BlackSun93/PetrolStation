@@ -1,0 +1,6 @@
+/Users/maskaro/Projects/2019-20/Assignment_2_PetrolStation/Assignment_2_PetrolStation/bin/Debug/Assignment_2_PetrolStation.exe
+/Users/maskaro/Projects/2019-20/Assignment_2_PetrolStation/Assignment_2_PetrolStation/obj/Debug/Assignment_2_PetrolStation.exe
+C:\Users\69 Gang\Downloads\Assignment_2_PetrolStation\Assignment_2_PetrolStation\Assignment_2_PetrolStation\bin\Debug\Assignment_2_PetrolStation.exe
+C:\Users\69 Gang\Downloads\Assignment_2_PetrolStation\Assignment_2_PetrolStation\Assignment_2_PetrolStation\obj\Debug\Assignment_2_PetrolStation.csprojAssemblyReference.cache
+C:\Users\69 Gang\Downloads\Assignment_2_PetrolStation\Assignment_2_PetrolStation\Assignment_2_PetrolStation\obj\Debug\Assignment_2_PetrolStation.csproj.CoreCompileInputs.cache
+C:\Users\69 Gang\Downloads\Assignment_2_PetrolStation\Assignment_2_PetrolStation\Assignment_2_PetrolStation\obj\Debug\Assignment_2_PetrolStation.exe
