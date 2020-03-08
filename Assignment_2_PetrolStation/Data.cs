@@ -16,7 +16,7 @@ namespace Assignment_2_PetrolStation
 
         private static void InitialiseVehicles()
         {
-            vehicles = new List<Vehicle>();
+            vehicles = new List<Vehicle>();   //how to remove vehicles with 0 patience from vehicles list? they have IDs but that doesnt relate to their position in the queue
 
             // https://msdn.microsoft.com/en-us/library/system.timers.timer(v=vs.71).aspx
             timer = new Timer();
@@ -34,7 +34,18 @@ namespace Assignment_2_PetrolStation
             Vehicle v = new Vehicle("diesel", 10*1800); //10 * 1800 millisecond fuel timer = 18 seconds
             vehicles.Add(v);
         }
-        private static void InitialisePumps()
+        
+        static void RemoveImpatient(Vehicle v)
+        {
+           
+            if (v.patience == 0)
+            {
+               // vehicles.RemoveAt(zeroPatienceVeh);
+            }
+        }
+    //either have a counter counting down, or have a IfNotAssigned() function that will -1 off a vehicle's patience, when patience hits 0, car is removed from vehicle list
+
+    private static void InitialisePumps()
         {
             pumps = new List<Pump>();
 
@@ -45,6 +56,10 @@ namespace Assignment_2_PetrolStation
                 p = new Pump("diesel");
                 pumps.Add(p);
             }
+        }
+        public static void RemoveIfNotAssigned ()
+        {
+            
         }
         public static void AssignVehicleToPump()
         {
@@ -70,30 +85,25 @@ namespace Assignment_2_PetrolStation
                 {
                     if (pumps[i-1].IsAvailable())
                     {
-                        blocked = false;
+                        blocked = false;                 //no block check for pumps 0, 3 or 6 because there are no pumps before them
                     }
                 }
-                //no block check for pumps 0, 3 or 6 because there are no pumps before them
-
                 //MAYBE PUT CHECKISBLOCKED() AS ITS OWN METHOD?
 
-                // note: needs more logic here, don't just assign to first
-                // available pump, but check for the last available pump
                 if (p.IsAvailable() && !blocked)
                 {
-                    v = vehicles[0]; // get first vehicle
-                    vehicles.RemoveAt(0); // remove vehicles from queue
-                    p.AssignVehicle(v); // assign it to the pump
-                   // p.FuelCounter(p.fuelSpeed);
+                   v = vehicles[0]; // get first vehicle
+                   vehicles.RemoveAt(0); // remove vehicles from queue
+                   p.AssignVehicle(v); // assign it to the pump
+                   p.FuelCounter(); //track how much fuel is dispensed
+                   v.assignedToPump = true;
                 }
-                if (!p.IsAvailable())
-                {
-                  //  p.FuelCounter();
-                }
+              
 
                 if (vehicles.Count == 0) { break; }
 
             }
         }
     }
+
 }

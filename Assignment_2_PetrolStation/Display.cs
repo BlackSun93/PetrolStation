@@ -48,7 +48,9 @@ namespace Assignment_2_PetrolStation
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
-            //Console.WriteLine("{0}", Data.pumps[0].t)); //this is starting the fuelcounter off even if there isn't a vehicle on the pump
+            //Data.pumps[8].FuelCounter();
+            Console.WriteLine("{0}", Data.pumps[8].showFuel()); 
+       
         }
     }
 }
