@@ -1,0 +1,4 @@
+C:\Users\69 Gang\Downloads\Assignment_2_PetrolStation\Assignment_2_PetrolStation\Assignment_2_PetrolStation\bin\Debug\Assignment_2_PetrolStation.exe
+C:\Users\69 Gang\Downloads\Assignment_2_PetrolStation\Assignment_2_PetrolStation\Assignment_2_PetrolStation\obj\Debug\MyPetrolStation.csprojAssemblyReference.cache
+C:\Users\69 Gang\Downloads\Assignment_2_PetrolStation\Assignment_2_PetrolStation\Assignment_2_PetrolStation\obj\Debug\MyPetrolStation.csproj.CoreCompileInputs.cache
+C:\Users\69 Gang\Downloads\Assignment_2_PetrolStation\Assignment_2_PetrolStation\Assignment_2_PetrolStation\obj\Debug\Assignment_2_PetrolStation.exe
