@@ -32,10 +32,12 @@ namespace Assignment_2_PetrolStation
         {
             // queue limit
             // diesel 
-            if (vehicles.Count < 5)
+            if (vehicles.Count < 1) //if there are more than 1 vehicle waiting, when CreateVehicle is called, it will not generate  vehicle or add it to the list of vehicles waiting
             {
                 Vehicle v = new Vehicle("diesel", 10 * 1800); //10 * 1800 millisecond fuel timer = 18 seconds
+               
                 vehicles.Add(v);
+                v.PatienceRunningOut(); //starts the vehicle's patience timer
             }
             
            
@@ -58,13 +60,42 @@ namespace Assignment_2_PetrolStation
             
         }
 
-    
-      
-        public static void AssignVehicleToPump()
+       /* public static bool CheckIfBlocked()
+        {
+            bool blocked = true; //if this is true then there is a vehicle on a pump ahead of the currently checked pump, blocking it from having another vehicle park on it.
+
+           // if (vehicles.Count == 0) { return; }
+
+            for (int i = 8; i >= 0; i--) //checks pumps starting from the pump at the last index in the pump list
+            {
+                int j = i;
+                p = pumps[i];
+                // if current pump %3 == 2 (so pumps number 2, 5 and 8 - i.e the last pumps on each row)
+                if (i % 3 == 2)
+                {
+                    if (pumps[i - 1].IsAvailable() && pumps[i - 2].IsAvailable()) //checks the two pumps before it dont have a vehicle on it
+                    {
+                        blocked = false;
+                    }
+                }
+                else if (i % 3 == 1) //if middle pumps or pumps 1, 4 or 7
+                {
+                    if (pumps[i - 1].IsAvailable())
+                    {
+                        blocked = false;                 //no block check for pumps 0, 3 or 6 because there are no pumps before them
+                    }
+                }
+                //MAYBE PUT CHECKISBLOCKED() AS ITS OWN METHOD?
+            }
+            return blocked;
+        } */
+        
+
+            public static void AssignVehicleToPump()
         {
             Vehicle v;
             Pump p;
-            bool blocked = true; //if this is true then there is a vehicle on a pump ahead of the currently checked pump, blocking it from having another vehicle park on it.
+          bool blocked = true; //if this is true then there is a vehicle on a pump ahead of the currently checked pump, blocking it from having another vehicle park on it.
 
             if (vehicles.Count == 0) { return; }
 
@@ -89,7 +120,7 @@ namespace Assignment_2_PetrolStation
                 }
                 //MAYBE PUT CHECKISBLOCKED() AS ITS OWN METHOD?
                
-
+              
                 if (p.IsAvailable() && !blocked)
                 {
                    v = vehicles[0]; // get first vehicle

@@ -3,7 +3,8 @@ namespace Assignment_2_PetrolStation
 {
     public class Display
     {
-		public static void DrawVehicles()
+        Vehicle v;
+        public static void DrawVehicles()
 		{
 			Vehicle v;
 
@@ -27,8 +28,8 @@ namespace Assignment_2_PetrolStation
 				p = Data.pumps[i];
 
 				Console.Write("#{0} ", i + 1);
-				if (p.IsAvailable()) { Console.Write("FREE"); }
-				else { Console.Write("BUSY"); }
+				if (p.IsAvailable()) { Console.Write("FREE          "); }
+				else { Console.Write("BUSY  ID {0}", Data.vehicles[i].carID ); }
 				Console.Write(" | ");
 
                 // modulus -> remainder of a division operation
@@ -48,7 +49,7 @@ namespace Assignment_2_PetrolStation
             Console.WriteLine("");
             Console.WriteLine("");
             //Data.pumps[8].FuelCounter();
-            Console.WriteLine("Test counter for how many vehicles have left due to getting too impatient: {0}", Vehicle.VehiclesLeftNoFuel);
+            Console.WriteLine("Test counter for how many vehicles have left due to getting too impatient: {0}       Its ID was: {1}", Vehicle.VehiclesLeftNoFuel, Vehicle.idOfLeftVeh);
             Console.WriteLine("Pump 1 has dispensed : {0}           Pump 2 has dispensed: {1}           Pump 3 has dispensed: {2} ", Data.pumps[0].showFuel(), Data.pumps[1].showFuel(), Data.pumps[2].showFuel());
             Console.WriteLine("Pump 4 has dispensed : {0}           Pump 5 has dispensed: {1}           Pump 6 has dispensed: {2} ", Data.pumps[3].showFuel(), Data.pumps[4].showFuel(), Data.pumps[5].showFuel());
             Console.WriteLine("Pump 7 has dispensed : {0}           Pump 8 has dispensed: {1}           Pump 9 has dispensed: {2} ", Data.pumps[6].showFuel(), Data.pumps[7].showFuel(), Data.pumps[8].showFuel());

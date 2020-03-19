@@ -11,8 +11,8 @@ namespace Assignment_2_PetrolStation
             Data.Initialise();
 
             Timer timer = new Timer();
-            timer.Interval = 2050;
-            timer.AutoReset = true; // repeat every 2 seconds
+            timer.Interval = 150;
+            timer.AutoReset = true; 
             timer.Elapsed += RunProgramLoop;
             timer.Enabled = true;
             timer.Start();
@@ -26,6 +26,7 @@ namespace Assignment_2_PetrolStation
             Display.DrawVehicles();
             Console.WriteLine();
             Console.WriteLine();
+            
             Data.AssignVehicleToPump();
             Display.DrawPumps();
 
