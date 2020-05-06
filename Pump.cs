@@ -14,12 +14,10 @@ namespace Assignment_2_PetrolStation
         public double totalPumpDisp = 0; // variable to keep track of each individual pump's dispensed fuel
         public double fuelPrice = 1.20;
         public static int vehiclesServed = 0;
-        public static double totalDisPet; // variables to keep track of how much fuuel of each type have been dispensed
-        public static double totalDisDie;
-        public static double totalDisLPG;
+        public static double totalDisPet, totalDisDie, totalDisLPG; // variables to keep track of how much fuuel of each type have been dispensed
         public static double moneyTaken;
         public Vehicle currentVehicle = null;
-        public double fuelSpeed = 1.5; //1.5L per second
+        public static double fuelSpeed = 1.5; //1.5L per second
 
     
 
@@ -55,7 +53,7 @@ namespace Assignment_2_PetrolStation
         /// to get the pump amounts to show in the display class i had to have an accessable function to return the value of totalPumpDisp, which is a non-static amount of fuel the pump has dispensed
         /// </summary>
         /// <returns></returns>
-        public double showFuel()
+        public double ShowFuel()
         {
             return totalPumpDisp;
         }
@@ -69,7 +67,7 @@ namespace Assignment_2_PetrolStation
         public void ReleaseVehicle(object sender, ElapsedEventArgs e)
         {
             AddFuelToTotal();
-
+          
                 using (StreamWriter sw = new StreamWriter("PetrolOutput.txt", append: true))
                 {
  
@@ -77,9 +75,9 @@ namespace Assignment_2_PetrolStation
                     //writes the vehicle id, type, how much fuel it took and the pump it was asigned to (+1 or else pumps start at 0 instead of at 1)
                     //i could not find a way to get streamwriter to format the output in a such a way that each column always starts in the same place, it works for the first 3 columns but not for fuel and pump id
                 }
-  
-            currentVehicle = null;
-            vehiclesServed++;
+
+            currentVehicle = null; //clears the pump
+            vehiclesServed++;       
         }
        /// <summary>
        /// Calculates how much fuel was dispensed, updates global totalDispensedFuel variable and reports the pump's dispensed fuel for this transaction
@@ -90,9 +88,28 @@ namespace Assignment_2_PetrolStation
             dispensedFuel = ((currentVehicle.fuelTime * fuelSpeed) / 1000); //uses the vehicle object that was on the pump's time to fuel, * by the pump's fueling speed 
                                                                              //and adds it to the pump's record of litres dispensed, /1000 because fueltime is in milliseconds
                                                                              //so this brings it back to seconds.
-            totalPumpDisp += dispensedFuel;
+            totalPumpDisp += dispensedFuel;     //adds the amount dispensed to the global variable that tracks all fuel dispensed across all pumps and all fueltypes
+
+            switch (currentVehicle.fuelType)
+            {
+                case "PET":
+                    totalDisPet += dispensedFuel;
+                    break;
+
+                case "DSL":
+                    totalDisDie += dispensedFuel;
+                    break;
+
+                case "LPG":
+                    totalDisLPG += dispensedFuel;
+                    break;
+
+                default:
+                    break;
+
+            }
           
-            if (currentVehicle.fuelType == "PET")
+           /* if (currentVehicle.fuelType == "PET")
             {
                 totalDisPet += dispensedFuel;
                
@@ -107,6 +124,7 @@ namespace Assignment_2_PetrolStation
                 totalDisLPG += dispensedFuel;
                 
             }
+            */
 
            totalDispensedFuel = (totalDisLPG + totalDisDie + totalDisPet); //totals up all the global counters for the 3 fuel types, stores total amount of fuel dispensed
             moneyTaken = totalDispensedFuel * fuelPrice;

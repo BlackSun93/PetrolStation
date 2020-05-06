@@ -35,11 +35,11 @@ namespace Assignment_2_PetrolStation
 
 				Console.Write("#{0} ", i + 1);
 				if (p.IsAvailable()) { Console.Write("FREE"); }
-				else { Console.Write("BUSY"); }
-				Console.Write(" | ");
-				if (i % 3 == 2) { Console.WriteLine(); }
-             
-            }
+				else { Console.Write("BUSY"); }     //would ideally write the vehicle's ID and fuel type and potentially how many seconds its going to be on the pump for?
+				Console.Write(" | ");               //but would have to be a static vehicle object, currently vehicle data is taken from the queue list, then moved to pump.currentvehicle 
+				if (i % 3 == 2) { Console.WriteLine(); } //this cant be static because there are potentially 9 different pump.currentvehicles, so i would have to take the vehicle object
+                                                //move it somewhere (probably to a list of successfully fuelled vehicles) then reference the pump ID it was asigned to with the pump
+            }                               //index number and then read its data fields from there, gross.
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
@@ -47,15 +47,17 @@ namespace Assignment_2_PetrolStation
             Console.WriteLine("Amount of vehicles have left without fueling: {0}       Its ID was: {1}", Vehicle.VehiclesLeftNoFuel, Data.showRemovedId); //counter 5 reqs
             Console.WriteLine("");
          
-            Console.WriteLine("Pump 1 has dispensed : {0}           Pump 2 has dispensed: {1}           Pump 3 has dispensed: {2} ", Data.pumps[0].showFuel(), Data.pumps[1].showFuel(), Data.pumps[2].showFuel());
-            Console.WriteLine("Pump 4 has dispensed : {0}           Pump 5 has dispensed: {1}           Pump 6 has dispensed: {2} ", Data.pumps[3].showFuel(), Data.pumps[4].showFuel(), Data.pumps[5].showFuel());
-            Console.WriteLine("Pump 7 has dispensed : {0}           Pump 8 has dispensed: {1}           Pump 9 has dispensed: {2} ", Data.pumps[6].showFuel(), Data.pumps[7].showFuel(), Data.pumps[8].showFuel());
+            Console.WriteLine("Pump 1 has dispensed : {0}           Pump 2 has dispensed: {1}           Pump 3 has dispensed: {2} ", Data.pumps[0].ShowFuel(), Data.pumps[1].ShowFuel(), Data.pumps[2].ShowFuel());
+            Console.WriteLine("Pump 4 has dispensed : {0}           Pump 5 has dispensed: {1}           Pump 6 has dispensed: {2} ", Data.pumps[3].ShowFuel(), Data.pumps[4].ShowFuel(), Data.pumps[5].ShowFuel());
+            Console.WriteLine("Pump 7 has dispensed : {0}           Pump 8 has dispensed: {1}           Pump 9 has dispensed: {2} ", Data.pumps[6].ShowFuel(), Data.pumps[7].ShowFuel(), Data.pumps[8].ShowFuel());
             Console.WriteLine("");
 
             Console.WriteLine("PETROL dispensed: {0}L       DIESEL dispensed: {1}L      LPG dispensed: {2}L", Pump.totalDisPet, Pump.totalDisDie, Pump.totalDisLPG);
             Console.WriteLine("Total fuel dispensed :  {0}", Pump.totalDispensedFuel);      //satifies counter 1 reqs
             Console.WriteLine("Total amout of money made: ${0}", Pump.moneyTaken);          //satisfies counter 2
             Console.WriteLine("Attendant's commission is: ${0}", (Pump.moneyTaken / 100) ); //counter 3 reqs
+
+            
         }
     }
 }
