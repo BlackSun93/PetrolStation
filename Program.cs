@@ -9,8 +9,8 @@ namespace Assignment_2_PetrolStation
 {
     class Program
     {
-        public static int gameSpeed = 1400; //sets the refresh rate of the program to 1.4 seconds
-        //
+        private static int refreshSpeed = 1400; //sets the refresh rate of the program to 1.4 seconds
+        
         static void Main(string[] args)
         {
             //When the program first runs, creates a new output file to keep track of all the transactions, creates it with some headings to make it easier to read
@@ -22,9 +22,11 @@ namespace Assignment_2_PetrolStation
 
             Data.Initialise();
 
-            Timer timer = new Timer();
-            timer.Interval = gameSpeed;
-            timer.AutoReset = true; 
+            Timer timer = new Timer
+            {
+                Interval = refreshSpeed,
+                AutoReset = true
+            };
             timer.Elapsed += RunProgramLoop;
             timer.Enabled = true;
             timer.Start();
@@ -42,7 +44,6 @@ namespace Assignment_2_PetrolStation
             Data.AssignVehicleToPump();
             Display.DrawPumps();
             Data.PatienceCheck();
-
         }
     }
 }

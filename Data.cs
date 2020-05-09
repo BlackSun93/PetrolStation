@@ -22,13 +22,15 @@ namespace Assignment_2_PetrolStation
 
         private static void InitialiseVehicles()
         {
-            vehicles = new List<Vehicle>();   
+            vehicles = new List<Vehicle>();
 
-                // https://msdn.microsoft.com/en-us/library/system.timers.timer(v=vs.71).aspx
-                timer = new Timer();
-                timer.Interval = Vehicle.RandomNumberGen(1500, 2200); //makes a new vehicle every 1.5 - 2.2 seconds
-                timer.AutoReset = true; // keep repeating every 1.5 seconds
-                timer.Elapsed += CreateVehicle; //every time 1500 elapses, make a new vehicle
+            // https://msdn.microsoft.com/en-us/library/system.timers.timer(v=vs.71).aspx
+            timer = new Timer
+            {
+                Interval = Vehicle.RandomNumberGen(1500, 2200), //makes a new vehicle every 1.5 - 2.2 seconds
+                AutoReset = true // keep repeating every 1.5 seconds
+            };
+            timer.Elapsed += CreateVehicle; //every time interval elapses, make a new vehicle
                 timer.Enabled = true;
                 timer.Start();
             
@@ -53,12 +55,12 @@ namespace Assignment_2_PetrolStation
              {
                 foreach (Vehicle veh in vehicles)
                 {
-                    if (veh.patience <= 0)
+                    if (veh.Patience <= 0)
                     {
                         int toRemove;                       //stores the index of the vehicle with 0 patience
                         toRemove = vehicles.IndexOf(veh);
-                        showRemovedId = veh.carID;          //some logic to transfer the ID of a vehicle to be removed elsewhere, was used so i could debug
-                                                            //but I think its a nice feature
+                        showRemovedId = veh.CarID;          //some logic to transfer the ID of a vehicle to be removed to display class
+                                                            
                         vehicles.RemoveAt(toRemove);
                         Vehicle.VehiclesLeftNoFuel++;
                     }
@@ -97,7 +99,7 @@ namespace Assignment_2_PetrolStation
 
                   for (int i = 8; i >= 0; i--) //checks pumps starting from the pump at the last index in the pump list
                   {
-                        pumpRemember = i;
+                        pumpRemember = i; //keeps track of which pump is being checked so the vehicle knows what pump it was assigned to
                         p = pumps[i];
                                                 
                      if (i % 3 == 2) // if current pump %3 == 2 (so pumps number 2, 5 and 8 - i.e the last pumps on each row)
@@ -121,7 +123,7 @@ namespace Assignment_2_PetrolStation
                             vehicles.RemoveAt(0); // remove vehicles from queue (from the vehicle list)
                             p.AssignVehicle(v); // assign it to the pump
                             v.assignedToPump = true; //tells the vehicle object that this vehicle was assigned to a pump
-                            v.pumpNumber = pumpRemember; //transfers the # of the pump that is servicing this vehicle to the vehicle object.
+                            v.PumpNumber = pumpRemember; //transfers the # of the pump that is servicing this vehicle to the vehicle object.
                       }
 
                      if (vehicles.Count == 0) { break; }
