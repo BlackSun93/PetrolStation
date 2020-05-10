@@ -35,6 +35,7 @@ namespace Assignment_2_PetrolStation
 
 				Console.Write("#{0} ", i + 1);
 				if (p.IsAvailable()) { Console.Write("      FREE     "); } 
+             
 				else { Console.Write("ID: {0} Fuel: {1}",p.currentVehicle.CarID, p.currentVehicle.FuelType); }    
 				Console.Write(" | ");               
 				if (i % 3 == 2) { Console.WriteLine(); } 

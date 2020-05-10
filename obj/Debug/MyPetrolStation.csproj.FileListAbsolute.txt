@@ -2,3 +2,7 @@ C:\Users\69 Gang\Downloads\Assignment_2_PetrolStation\Assignment_2_PetrolStation
 C:\Users\69 Gang\Downloads\Assignment_2_PetrolStation\Assignment_2_PetrolStation\Assignment_2_PetrolStation\obj\Debug\MyPetrolStation.csprojAssemblyReference.cache
 C:\Users\69 Gang\Downloads\Assignment_2_PetrolStation\Assignment_2_PetrolStation\Assignment_2_PetrolStation\obj\Debug\MyPetrolStation.csproj.CoreCompileInputs.cache
 C:\Users\69 Gang\Downloads\Assignment_2_PetrolStation\Assignment_2_PetrolStation\Assignment_2_PetrolStation\obj\Debug\Assignment_2_PetrolStation.exe
+C:\Users\69 Gang\PetrolStation\obj\Debug\MyPetrolStation.csprojAssemblyReference.cache
+C:\Users\69 Gang\PetrolStation\obj\Debug\MyPetrolStation.csproj.CoreCompileInputs.cache
+C:\Users\69 Gang\PetrolStation\obj\Debug\Assignment_2_PetrolStation.exe
+C:\Users\69 Gang\PetrolStation\bin\Debug\Assignment_2_PetrolStation.exe
