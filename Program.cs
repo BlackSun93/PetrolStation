@@ -20,6 +20,7 @@ namespace Assignment_2_PetrolStation
                 sw.WriteLine("VehicleID    VehicleType    FuelType    FuelDispensed    Pump#");
             }
 
+            //Data.vehGen = Vehicle.RandomNumberGen(1500, 2200);
             Data.Initialise();
 
             Timer timer = new Timer
@@ -36,14 +37,21 @@ namespace Assignment_2_PetrolStation
 
         static void RunProgramLoop(object sender, ElapsedEventArgs e)
         {
+            Data.vehGen = Vehicle.RandomNumberGen(1500, 2200);      //gives vehGen a value
+            if (Data.vehGenInProg == false)
+            {
+                Data.vehGenInProg = true;
+                Data.CreateVehTimer();     //starts the timer for vehicle creation
+            }
+           
             Console.Clear();
-            Display.DrawVehicles();
+            Display.DrawVehicles();   //draws vehicle list to the screen
             Console.WriteLine();
             Console.WriteLine();
             
-            Data.AssignVehicleToPump();
-            Display.DrawPumps();
-            Data.PatienceCheck();
+            Data.AssignVehicleToPump();    //drives function to assign vehicles                     
+            Display.DrawPumps();    //draws pump status as well as the counters
+            Data.PatienceCheck();   //checks to see if any vehicles have 0 patience in the vehicle queue
         }
     }
 }

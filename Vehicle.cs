@@ -23,7 +23,7 @@ namespace Assignment_2_PetrolStation
             lock (number)
             {
                 return (number.Next(min, max));               //random number generator, used to generate vehicles of different types, fueltypes and with random amounts of fuel
-            }                                                  //already in the tank  
+            }                                                  //already in the tank, also used to generate patience values and vehicle generation intervals.  
         }
 		public static int nextCarID = 0;
 

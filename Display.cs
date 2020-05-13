@@ -3,7 +3,7 @@ namespace Assignment_2_PetrolStation
 {
     public class Display
     {
-
+        
         /// <summary>
         /// uses the vehicles array in Data to look at queued vehicles, outputs its fuel type, vehicle type and ID
         /// </summary>
@@ -21,7 +21,7 @@ namespace Assignment_2_PetrolStation
 		}
 
         /// <summary>
-        /// Draws the pumps to the screen, i wanted it to say the vehicle ID or type or something instead of busy
+        /// Draws the pumps to the screen as well as some information about the vehicle.
         /// </summary>
 		public static void DrawPumps()
 		{
@@ -37,10 +37,11 @@ namespace Assignment_2_PetrolStation
 				if (p.IsAvailable()) { Console.Write("      FREE     "); } 
              
 				else { Console.Write("ID: {0} Fuel: {1}",p.currentVehicle.CarID, p.currentVehicle.FuelType); }    
-				Console.Write(" | ");               
+				Console.Write(" || ");               
 				if (i % 3 == 2) { Console.WriteLine(); } 
                                                 
-            }                               
+            }    
+            
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("");
@@ -54,10 +55,10 @@ namespace Assignment_2_PetrolStation
             Console.WriteLine("");
 
             Console.WriteLine("PETROL dispensed: {0}L       DIESEL dispensed: {1}L      LPG dispensed: {2}L", Pump.totalDisPet, Pump.totalDisDie, Pump.totalDisLPG);
-            Console.WriteLine("Total fuel dispensed :  {0}", Pump.totalDispensedFuel);      //satifies counter 1 reqs
+            Console.WriteLine("Total fuel dispensed :  {0}L", Pump.totalDispensedFuel);      //satifies counter 1 reqs
             Console.WriteLine("Total amout of money made: ${0}", Pump.moneyTaken);          //satisfies counter 2
             Console.WriteLine("Attendant's commission is: ${0}", String.Format ("{0:0.00}", (Pump.moneyTaken / 100) )); //counter 3 reqs https://www.csharp-examples.net/string-format-double/
-
+        
         }
     }
 }

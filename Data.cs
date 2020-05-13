@@ -14,26 +14,34 @@ namespace Assignment_2_PetrolStation
         public static int showRemovedId;        //tracks the ID of vehicles that left without refueling
         public static int pumpRemember;         //variable that moves with the for loop counter to assign the vehicle.pumpnumber variable a value
                                                 //allows the vehicle to remember what pump it was fueled by
-
+        public static int vehGen;               //variable to store result of random number generator for vehicle creation interval.
+        public static bool vehGenInProg = false; //is set to true when the timer for vehicle generation in Program.cs is started, stops multiple vehicle generating timers from being created 
+       
+        /// <summary>
+        /// creates the pumps, creates the vehicle list for created vehicles to be stored in
+        /// </summary>
         public static void Initialise() {
             InitialisePumps();
-            InitialiseVehicles();
+            vehicles = new List<Vehicle>();
         }
 
-        private static void InitialiseVehicles()
+        /// <summary>
+        /// Timer that waits for 'vehGen' seconds (given a value in Program class) then creates a vehicle. Set to not autoreset because
+        /// Timer was taking a random number and then resetting with that value (i.e vehGen = 2000, timer always resets at 2000, meaning first
+        /// vehicle is random but no others.) 
+        /// this timer is called in program class to run on every loop of the program but this means multiple timers are made
+        /// </summary>
+        public static void CreateVehTimer()
         {
-            vehicles = new List<Vehicle>();
-
-            // https://msdn.microsoft.com/en-us/library/system.timers.timer(v=vs.71).aspx
+             // https://msdn.microsoft.com/en-us/library/system.timers.timer(v=vs.71).aspx
             timer = new Timer
             {
-                Interval = Vehicle.RandomNumberGen(1500, 2200), //makes a new vehicle every 1.5 - 2.2 seconds
-                AutoReset = true // keep repeating every 1.5 seconds
+                Interval = vehGen, //makes a new vehicle every 1.5 - 2.2 seconds, gets value from Program.cs
+                AutoReset = false 
             };
             timer.Elapsed += CreateVehicle; //every time interval elapses, make a new vehicle
                 timer.Enabled = true;
                 timer.Start();
-            
         }
 
         private static void CreateVehicle(object sender, ElapsedEventArgs e)
@@ -43,9 +51,9 @@ namespace Assignment_2_PetrolStation
                                     //in practice vehicles have such little patience that there is usually 2 vehicles in the queue at most
             {
                 Vehicle v = new Vehicle();
-
                 vehicles.Add(v);
                 v.PatienceRunningOut(); //starts the vehicle's patience timer
+                vehGenInProg = false; //this bool is set to true in program.cs when the countdown to this vehicle's creation is started, resets to false so the next timer can start
             }
         }
             /// <summary>
@@ -66,8 +74,9 @@ namespace Assignment_2_PetrolStation
                     }
                 }
              }
+
            /// <summary>
-           /// initialises 9 pumps
+           /// initialises 9 pumps, adds them to the pumps list
            /// </summary>
         private static void InitialisePumps()
         {
